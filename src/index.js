@@ -1,72 +1,77 @@
-import "./style.css";
+import './style.css';
 
-const input = document.querySelector("#new-task-input");
-const submit = document.querySelector(".add");
-const listEL = document.querySelector("#tasks");
-let arrayofTasks = [];
-if (localStorage.getItem("tasks")) {
-  arrayofTasks = JSON.parse(localStorage.getItem("tasks"));
+const input = document.querySelector('#new-task-input');
+const submitButton = document.querySelector('.add');
+const taskList = document.querySelector('#tasks');
+let tasks = [];
+
+if (localStorage.getItem('tasks')) {
+  tasks = JSON.parse(localStorage.getItem('tasks'));
 }
 
-getFromLocalStorage();
+/*eslint-disable*/
+loadTasks();
+
 // Add task
-submit.onclick = function (e) {
+submitButton.onclick = function (e) {
   e.preventDefault();
   if (input.value !== "") {
-    addTaskToArray(input.value);
+    /*eslint-disable*/
+    createNewTask(input.value);
     input.value = "";
   }
 };
 
-listEL.addEventListener("click", (e) => {
+taskList.addEventListener("click", (e) => {
   if (e.target.classList.contains("del")) {
-    deleteTask(e.target.parentElement.getAttribute("data-id"));
+    const { id } = e.target.parentElement.dataset;
+    /*eslint-disable*/
+    deleteTask(id);
     e.target.parentElement.remove();
   }
 });
 
-function addTaskToArray(tasktText) {
+function createNewTask(taskText) {
   const task = {
     id: Date.now(),
-    title: tasktText,
+    title: taskText,
     completed: false,
   };
-  arrayofTasks.push(task);
-  addElementsToForm(arrayofTasks);
+  tasks.push(task);
+  addTaskToDOM(task);
 
-  addToLocalStorage(arrayofTasks);
-}
-function addElementsToForm(arrayofTasks) {
-  listEL.innerHTML = "";
-  arrayofTasks.forEach((task) => {
-    const div = document.createElement("div");
-    div.className = "task";
-    if (task.completed) {
-      div.className = "task done";
-    }
-    div.setAttribute("data-id", task.id);
-    div.appendChild(document.createTextNode(task.title));
-    const span = document.createElement("span");
-    span.className = "del";
-    span.appendChild(document.createTextNode("Delete"));
-    div.appendChild(span);
-    listEL.appendChild(div);
-  });
+  saveTasksToLocalStorage();
 }
 
-function addToLocalStorage(arrayofTasks) {
-  window.localStorage.setItem("tasks", JSON.stringify(arrayofTasks));
+function addTaskToDOM(task) {
+  const taskElement = document.createElement("div");
+  taskElement.className = "task";
+  if (task.completed) {
+    taskElement.classList.add("done");
+  }
+  taskElement.dataset.id = task.id;
+  taskElement.appendChild(document.createTextNode(task.title));
+  const deleteButton = document.createElement("span");
+  deleteButton.className = "del";
+  deleteButton.appendChild(document.createTextNode("Delete"));
+  taskElement.appendChild(deleteButton);
+  taskList.appendChild(taskElement);
 }
 
-function getFromLocalStorage() {
-  const data = window.localStorage.getItem("tasks");
+function saveTasksToLocalStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  const data = localStorage.getItem("tasks");
   if (data) {
-    const tasks = JSON.parse(data);
-    addElementsToForm(tasks);
+    const tasksFromStorage = JSON.parse(data);
+    tasksFromStorage.forEach(addTaskToDOM);
+    tasks = tasksFromStorage;
   }
 }
 
 function deleteTask(taskId) {
-  arrayofTasks = arrayofTasks.filter((task) => task.id != taskId);
-  addToLocalStorage(arrayofTasks);
+  tasks = tasks.filter((task) => task.id != taskId);
+  saveTasksToLocalStorage();
 }
