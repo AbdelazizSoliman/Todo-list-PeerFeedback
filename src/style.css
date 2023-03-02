@@ -43,9 +43,22 @@ main {
 
 .clear {
   margin: 1rem auto;
+  background-color: rgb(197, 197, 197);
 }
 
 .content {
   list-style-type: none;
-  margin: 2%;
+}
+
+.task {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.actions {
+    background-color: rgba(162, 162, 165, 0.671);
+}
+
+button {
+    border-style: hidden;
 }

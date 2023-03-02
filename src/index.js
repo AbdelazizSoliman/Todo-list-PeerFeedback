@@ -1,36 +1,72 @@
-import './style.css';
+import "./style.css";
 
-const taskList = document.querySelector('.content');
-if (taskList) {
-  const tasks = [
-    {
-      description: 'wash the dishes',
-      completed: false,
-      index: 1,
-    },
-    {
-      description: 'complete To Do list',
-      completed: false,
-      index: 2,
-    },
-  ];
-  const populate = () => {
-    tasks
-      .sort((a, b) => a.index - b.index)
-      .forEach((task) => {
-        const listItem = document.createElement('li');
-        const checkbox = document.createElement('input');
-        checkbox.setAttribute('type', 'checkbox');
-        const taskContent = document.createElement('span');
-        taskContent.innerHTML = task.description;
-        const taskAction = document.createElement('div');
-        taskAction.innerHTML = '<hr>';
-        listItem.appendChild(checkbox);
-        listItem.appendChild(taskContent);
-        listItem.appendChild(taskAction);
-        taskList.appendChild(listItem);
-      });
+const input = document.querySelector("#new-task-input");
+const submit = document.querySelector(".add");
+const listEL = document.querySelector("#tasks");
+let arrayofTasks = [];
+if (localStorage.getItem("tasks")) {
+  arrayofTasks = JSON.parse(localStorage.getItem("tasks"));
+}
+
+getFromLocalStorage();
+// Add task
+submit.onclick = function (e) {
+  e.preventDefault();
+  if (input.value !== "") {
+    addTaskToArray(input.value);
+    input.value = "";
+  }
+};
+
+listEL.addEventListener("click", (e) => {
+  if (e.target.classList.contains("del")) {
+    deleteTask(e.target.parentElement.getAttribute("data-id"));
+    e.target.parentElement.remove();
+  }
+});
+
+function addTaskToArray(tasktText) {
+  const task = {
+    id: Date.now(),
+    title: tasktText,
+    completed: false,
   };
+  arrayofTasks.push(task);
+  addElementsToForm(arrayofTasks);
 
-  document.addEventListener('DOMContentLoaded', populate);
+  addToLocalStorage(arrayofTasks);
+}
+function addElementsToForm(arrayofTasks) {
+  listEL.innerHTML = "";
+  arrayofTasks.forEach((task) => {
+    const div = document.createElement("div");
+    div.className = "task";
+    if (task.completed) {
+      div.className = "task done";
+    }
+    div.setAttribute("data-id", task.id);
+    div.appendChild(document.createTextNode(task.title));
+    const span = document.createElement("span");
+    span.className = "del";
+    span.appendChild(document.createTextNode("Delete"));
+    div.appendChild(span);
+    listEL.appendChild(div);
+  });
+}
+
+function addToLocalStorage(arrayofTasks) {
+  window.localStorage.setItem("tasks", JSON.stringify(arrayofTasks));
+}
+
+function getFromLocalStorage() {
+  const data = window.localStorage.getItem("tasks");
+  if (data) {
+    const tasks = JSON.parse(data);
+    addElementsToForm(tasks);
+  }
+}
+
+function deleteTask(taskId) {
+  arrayofTasks = arrayofTasks.filter((task) => task.id != taskId);
+  addToLocalStorage(arrayofTasks);
 }
