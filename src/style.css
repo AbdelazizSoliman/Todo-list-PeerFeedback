@@ -29,6 +29,7 @@ main {
 .actions {
   display: flex;
   align-items: center;
+  background-color: rgba(162, 162, 165, 0.671);
 }
 
 #new-task-form {
@@ -51,14 +52,10 @@ main {
 }
 
 .task {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.actions {
-    background-color: rgba(162, 162, 165, 0.671);
+  display: flex;
+  gap: 0.5rem;
 }
 
 button {
-    border-style: hidden;
+  border-style: hidden;
 }
