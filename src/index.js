@@ -1,6 +1,11 @@
 import './style.css';
 
-import { createNewTask, deleteTask, loadTasks } from './modules/tasks.js';
+import {
+  createNewTask,
+  deleteTask,
+  loadTasks,
+  titleElement,
+} from './modules/tasks.js';
 
 const input = document.querySelector('#new-task-input');
 const submitButton = document.querySelector('.add');
@@ -22,4 +27,5 @@ taskList.addEventListener('click', (e) => {
     deleteTask(id);
     e.target.parentElement.remove();
   }
+  titleElement.focus();
 });

@@ -53,9 +53,29 @@ main {
 
 .task {
   display: flex;
-  gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 40vw;
+    margin-left: 1rem;
 }
+
 
 button {
   border-style: hidden;
 }
+
+.del {
+    padding-right: 25px;
+    cursor: pointer;
+    text-decoration: none ;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 1rem;
+  }
+
+  
+
+  .title {
+    min-width: 60vw;
+    text-decoration: none
+  }
