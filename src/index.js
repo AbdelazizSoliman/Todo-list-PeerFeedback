@@ -1,23 +1,23 @@
-import './style.css';
+import "./style.css";
 
-import { initializeTasks, createNewTask, deleteTask } from './modules/tasks.js';
+import { initializeTasks, createNewTask } from "./modules/tasks.js";
 import {
   markTaskComplete,
   markTaskIncomplete,
   clearCompletedTasks,
-} from './modules/status.js';
+} from "./modules/status.js";
 
-const input = document.querySelector('#new-task-input');
-const submitButton = document.querySelector('.add');
-const clearButton = document.querySelector('.clear');
+const input = document.querySelector("#new-task-input");
+const submitButton = document.querySelector(".add");
+const clearButton = document.querySelector(".clear");
 
 initializeTasks();
 
 submitButton.onclick = (e) => {
   e.preventDefault();
-  if (input.value !== '') {
+  if (input.value !== "") {
     createNewTask(input.value);
-    input.value = '';
+    input.value = "";
   }
 };
 
@@ -32,9 +32,9 @@ function handleCheckboxChange(e) {
 
 function handleClearButtonClick() {
   clearCompletedTasks();
-  const taskElements = document.querySelectorAll('.task');
+  const taskElements = document.querySelectorAll(".task");
   taskElements.forEach((taskElement) => {
-    if (taskElement.classList.contains('done')) {
+    if (taskElement.classList.contains("done")) {
       taskElement.remove();
     }
   });
@@ -43,9 +43,9 @@ function handleClearButtonClick() {
 function setupEventListeners() {
   const checkboxes = document.querySelectorAll('.task input[type="checkbox"]');
   checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('change', handleCheckboxChange);
+    checkbox.addEventListener("change", handleCheckboxChange);
   });
-  clearButton.addEventListener('click', handleClearButtonClick);
+  clearButton.addEventListener("click", handleClearButtonClick);
 }
 
 setupEventListeners();
