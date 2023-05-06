@@ -146,6 +146,8 @@ Feel free to check the [issues page](../../issues/).
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
+I'm thankful to <a href="https://www.microverse.org//">Microverse</a> for providing a study platform which guided me through this project.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FAQ (optional) -->
