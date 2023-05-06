@@ -1,5 +1,6 @@
-const taskList = document.querySelector('#tasks');
 let tasks = [];
+const taskList = document.querySelector('#tasks');
+
 function createTitleElement(title) {
   const element = document.createElement('span');
   element.className = 'title';
@@ -27,6 +28,13 @@ function createDeleteButton() {
   return element;
 }
 
+function createCheckbox(completed) {
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = completed;
+  return checkbox;
+}
+
 function addTaskToDOM(task) {
   const taskElement = document.createElement('div');
   taskElement.className = 'task';
@@ -35,13 +43,18 @@ function addTaskToDOM(task) {
   }
   taskElement.dataset.id = task.id;
 
+  const checkbox = createCheckbox(task.completed);
+  checkbox.addEventListener('change', handleCheckboxChange);
+
   const titleElement = createTitleElement(task.title);
   titleElement.addEventListener('input', handleTitleInput);
 
   const deleteButton = createDeleteButton();
+  taskElement.appendChild(checkbox);
   taskElement.appendChild(titleElement);
   taskElement.appendChild(deleteButton);
   taskList.appendChild(taskElement);
+
   // update the index prop of each remaining task
   task.index = tasks.length;
   saveTasksToLocalStorage();
@@ -74,6 +87,15 @@ function handleTaskListClick(e) {
   }
 }
 
+function handleCheckboxChange(e) {
+  const taskId = e.target.parentElement.dataset.id;
+  if (e.target.checked) {
+    markTaskComplete(taskId);
+  } else {
+    markTaskIncomplete(taskId);
+  }
+}
+
 function setupEventListeners() {
   taskList.addEventListener('click', handleTaskListClick);
 }
@@ -94,4 +116,37 @@ function createNewTask(taskText) {
   saveTasksToLocalStorage();
 }
 
-export { initializeTasks, createNewTask, deleteTask };
+function markTaskComplete(taskId) {
+  const task = tasks.find((task) => task.id.toString() === taskId.toString());
+  task.completed = true;
+  saveTasksToLocalStorage();
+}
+
+function markTaskIncomplete(taskId) {
+  const task = tasks.find((task) => task.id.toString() === taskId.toString());
+  task.completed = false;
+  saveTasksToLocalStorage();
+}
+
+function clearCompletedTasks() {
+  tasks = tasks.filter((task) => !task.completed);
+  const taskElements = document.querySelectorAll('.task');
+  taskElements.forEach((taskElement) => {
+    if (taskElement.classList.contains('done')) {
+      taskElement.remove();
+    }
+  });
+  updateTaskIndexes();
+  saveTasksToLocalStorage();
+}
+
+export {
+  saveTasksToLocalStorage,
+  initializeTasks,
+  createNewTask,
+  deleteTask,
+  markTaskComplete,
+  markTaskIncomplete,
+  clearCompletedTasks,
+  tasks, // exporting tasks array for testing purposes
+};
