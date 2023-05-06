@@ -11,7 +11,9 @@ function createTitleElement(title) {
 }
 
 function saveTasksToLocalStorage() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  const incompleteTasks = tasks.filter((task) => !task.completed);
+  localStorage.setItem("tasks", JSON.stringify(incompleteTasks));
+  console.log("Saved tasks:", incompleteTasks);
 }
 
 function handleTitleInput(e) {
@@ -89,9 +91,14 @@ function addTaskToDOM(task) {
 }
 
 function loadTasks() {
-  const data = localStorage.getItem("tasks");
-  tasks = data ? JSON.parse(data) : [];
-  tasks.forEach(addTaskToDOM);
+  const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+  if (storedTasks) {
+    tasks = storedTasks;
+    tasks.forEach((task) => {
+      addTaskToDOM(task);
+    });
+  }
+  console.log("Loaded tasks:", tasks);
 }
 
 function updateTaskIndexes() {
