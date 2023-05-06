@@ -9,8 +9,6 @@
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
@@ -33,6 +31,8 @@
   <summary>Client</summary>
 </details>
 
+<<<<<<< HEAD
+
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
@@ -42,6 +42,10 @@
 - **[Adding your daily task.]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+=======
+
+> > > > > > > 8f70ecc66e0725ffa83c8e59cee08e0329af5145
 
 <!-- GETTING STARTED -->
 
@@ -100,15 +104,17 @@ Clone this repository to your desired folder:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<<<<<<< HEAD
+
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
 
 👤 **Author1**
 
-- GitHub: [@soliman](https://github.com/githubhandle)
-- Twitter: [@soliman](https://twitter.com/twitterhandle)
-- LinkedIn: [soliman](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@abdelazizsoliman](https://github.com/abdelazizsoliman)
+- Twitter: [@Abdelaz21958317](https://twitter.com/Abdelaz21958317)
+- LinkedIn: [Abdelaziz Soliman](https://www.linkedin.com/in/abdelaziz-soliman-16989b89/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -116,7 +122,7 @@ Clone this repository to your desired folder:
 
 - **[Mark your tasks as completed.]**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+=======
 
 <!-- CONTRIBUTING -->
 
