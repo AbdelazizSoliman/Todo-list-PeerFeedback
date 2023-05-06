@@ -37,8 +37,6 @@
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **[Use webpack to bundle JavaScript]**
 - **[Structure the list]**
 - **[Adding your daily task.]**
@@ -106,8 +104,6 @@ Clone this repository to your desired folder:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
-
 👤 **Author1**
 
 - GitHub: [@soliman](https://github.com/githubhandle)
@@ -117,8 +113,6 @@ Clone this repository to your desired folder:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Future Features <a name="Future-features"></a>
-
-> features you will add to the project.
 
 - **[Mark your tasks as completed.]**
 
