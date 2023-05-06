@@ -13,6 +13,11 @@ function markTaskIncomplete(taskId) {
 }
 
 function clearCompletedTasks() {
+  const completedTasks = tasks.filter((task) => task.completed);
+  completedTasks.forEach((task) => {
+    const taskElement = document.querySelector(`[data-id="${task.id}"]`);
+    taskElement.remove();
+  });
   tasks = tasks.filter((task) => !task.completed);
   saveTasksToLocalStorage();
 }
