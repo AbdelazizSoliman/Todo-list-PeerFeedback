@@ -1,5 +1,4 @@
 const taskList = document.querySelector('#tasks');
-// const titleElement = document.createElement("span");
 let tasks = [];
 function createTitleElement(title) {
   const element = document.createElement('span');
