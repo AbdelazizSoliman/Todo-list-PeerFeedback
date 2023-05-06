@@ -55,7 +55,7 @@ function loadTasks() {
 
 function updateTaskIndexes() {
   tasks.forEach((task, index) => {
-    task.index = index;
+    task.index = index + 1;
   });
 }
 
