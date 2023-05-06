@@ -1,5 +1,5 @@
 const taskList = document.querySelector('#tasks');
-const titleElement = document.createElement('span');
+// const titleElement = document.createElement("span");
 let tasks = [];
 function createTitleElement(title) {
   const element = document.createElement('span');
@@ -43,6 +43,9 @@ function addTaskToDOM(task) {
   taskElement.appendChild(titleElement);
   taskElement.appendChild(deleteButton);
   taskList.appendChild(taskElement);
+  // update the index prop of each remaining task
+  task.index = tasks.length;
+  saveTasksToLocalStorage();
 }
 
 function loadTasks() {
@@ -51,8 +54,15 @@ function loadTasks() {
   tasks.forEach(addTaskToDOM);
 }
 
+function updateTaskIndexes() {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+}
+
 function deleteTask(taskId) {
   tasks = tasks.filter((task) => task.id.toString() !== taskId.toString());
+  updateTaskIndexes();
   saveTasksToLocalStorage();
 }
 
@@ -61,8 +71,8 @@ function handleTaskListClick(e) {
     const taskId = e.target.parentElement.dataset.id;
     deleteTask(taskId);
     e.target.parentElement.remove();
+    updateTaskIndexes();
   }
-  titleElement.focus();
 }
 
 function setupEventListeners() {
