@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+
 # Todo-list-PeerFeedback
+
 =======
+
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
@@ -20,11 +23,11 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [To DO list] <a name="about-project"></a>
+# 📖 [Todo-list-PeerFeedback] <a name="about-project"></a>
 
-> In this project I used webpack to bundle JavaScript.
+> This project is for peer feedback.
 
-**[To DO lists]**
+**[Todo-list-PeerFeedback]**
 
 ## 🛠 Built With <a name="built-with"></a>
 
